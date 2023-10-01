@@ -36,18 +36,22 @@
                 <p class="text-muted">Order History</p>
                 <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">
-                    <thead>
+                        <thead>
                             <tr>
                                 <th>Order Number</th>
                                 <th>Date</th>
                                 <th>Items</th>
                                 <th>Order Total</th>
                             </tr>
-                            <tbody>
-                                {% for order in orders %}
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
                                 <tr>
                                     <td>
-                                        <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">{{ order.order_number | truncatechars:6 }}</a>
+                                        <a href="{% url 'order_history' order.order_number %}"
+                                        title="{{ order.order_number }}">
+                                            {{ order.order_number|truncatechars:6 }}
+                                        </a>
                                     </td>
                                     <td>{{ order.date }}</td>
                                     <td>
@@ -55,29 +59,23 @@
                                             {% for item in order.lineitems.all %}
                                                 <li class="small">
                                                     {% if item.product.has_sizes %}
-                                                        Size {{ item.product.size|upper }} 
-                                                    {% endif %}
-                                                    {{ item.product.name }} x{{ item.quantity }}
-                                                </li>                                                                                      
-                                                {% endfor %}
-
+                                                        Size {{ item.product.size|upper }}
+                                                    {% endif %}{{ item.product.name }} x{{ item.quantity }}
+                                                </li>
+                                            {% endfor %}
                                         </ul>
                                     </td>
                                     <td>${{ order.grand_total }}</td>
                                 </tr>
-                                {% endfor %}
-                            </tbody>
-                    </thead>
+                            {% endfor %}
+                        </tbody>
                     </table>
                 </div>
-                {{ orders }}
             </div>
         </div>
-
+{% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
-{% endblock %}
-
 {% endblock %}
