@@ -31,7 +31,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['8000-shagamatula-boutiqueado-cclsomwy6vf.ws-eu104.gitpod.io','8000-shagamatula-boutiqueado-cclsomwy6vf.ws-eu105.gitpod.io', 'boutiqueadapp-c73706a45688.herokuapp.com']
 
